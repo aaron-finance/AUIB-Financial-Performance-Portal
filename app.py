@@ -314,6 +314,14 @@ def fresh_scenario() -> dict:
         "created_at": datetime.now(timezone.utc).isoformat(),
         "global": copy.deepcopy(BASELINE["global"]),
         "programmes": copy.deepcopy(BASELINE["programmes"]),
+        "college_tuition_increases": {
+            college: max(
+                programme["tuition_increase"]
+                for programme in BASELINE["programmes"]
+                if programme["college"] == college
+            )
+            for college in BASELINE["colleges"]
+        },
         "scholarships": {
             college: values["scholarship_rate"]
             for college, values in BASELINE["colleges"].items()
@@ -327,6 +335,9 @@ def fresh_scenario() -> dict:
 
 def calculate_scenario(scenario: dict):
     programmes = pd.DataFrame(scenario["programmes"]).copy()
+    programmes["tuition_increase"] = programmes["college"].map(
+        scenario["college_tuition_increases"]
+    )
     programmes["fy27_tuition"] = (
         programmes["fy26_tuition"] * (1 + programmes["tuition_increase"])
     )
@@ -696,7 +707,28 @@ with st.sidebar.expander(
         )
     )
 
-st.sidebar.markdown("### Programme assumptions")
+st.sidebar.markdown("### College tuition assumptions")
+
+for college in scenario["college_tuition_increases"]:
+    scenario["college_tuition_increases"][college] = (
+        st.sidebar.slider(
+            college,
+            min_value=-0.20,
+            max_value=1.00,
+            value=float(
+                scenario["college_tuition_increases"][college]
+            ),
+            step=0.01,
+            format="%.0f%%",
+            key=f"college_tuition_{college}",
+            help=(
+                "Applies to all programmes within this College. "
+                "Range supports downside testing and extreme increases."
+            ),
+        )
+    )
+
+st.sidebar.markdown("### Programme intake assumptions")
 
 for index, programme in enumerate(
     scenario["programmes"]
@@ -707,23 +739,11 @@ for index, programme in enumerate(
     )
 
     with st.sidebar.expander(label):
-        programme["tuition_increase"] = st.slider(
-            "Tuition increase",
-            min_value=0.0,
-            max_value=0.30,
-            value=float(
-                programme["tuition_increase"]
-            ),
-            step=0.005,
-            format="%.1f%%",
-            key=f"tuition_{index}",
-        )
-
         programme["fy27_new_intake"] = (
             st.number_input(
                 "New intake",
                 min_value=0,
-                max_value=2000,
+                max_value=3000,
                 value=int(
                     programme["fy27_new_intake"]
                 ),

@@ -1,20 +1,11 @@
-# AUIB Financial Performance Portal
+# AUIB Financial Performance Portal v2
 
-This repository contains a flat, two-file Streamlit application.
+Flat Streamlit upload.
 
-## Files required
+Changes in this version:
+- One tuition slider for each College.
+- Tuition stress-test range from -20% to +100%.
+- New intake inputs allow 0 to 3,000 students per programme.
+- College tuition assumptions apply consistently to all programmes within that College.
 
-- `app.py`
-- `requirements.txt`
-
-## Deployment
-
-1. Upload both files to the root of the GitHub repository:
-   `aaron-finance/AUIB-Financial-Performance-Portal`
-2. Open Streamlit Community Cloud.
-3. Sign in with GitHub.
-4. Create a new app from the repository.
-5. Select `app.py` as the main file.
-6. Deploy.
-
-Portal users only need the final browser link. They do not need access to Excel, OneDrive, GitHub, or Python.
+Upload `app.py` and `requirements.txt` to the root of the existing GitHub repository, replacing the old files. Streamlit will automatically redeploy.
