@@ -1,11 +1,15 @@
-# AUIB Financial Performance Portal v2
+# AUIB Financial Performance Portal — Version 2.0.0
 
-Flat Streamlit upload.
+Flat Streamlit deployment.
 
-Changes in this version:
-- One tuition slider for each College.
-- Tuition stress-test range from -20% to +100%.
-- New intake inputs allow 0 to 3,000 students per programme.
-- College tuition assumptions apply consistently to all programmes within that College.
+## Version 2 changes
+- One tuition slider per College.
+- Tuition stress-test range: -20% to +100%.
+- New intake range: 0 to 3,000 per programme.
+- Navy interactive controls instead of crimson/red.
+- Baseline, Conservative, Growth and Extreme scenario presets.
+- Visible application version number.
 
-Upload `app.py` and `requirements.txt` to the root of the existing GitHub repository, replacing the old files. Streamlit will automatically redeploy.
+## Update
+Replace the existing `app.py` in GitHub with this version and commit the change.
+Streamlit should redeploy automatically. If necessary, reboot the app from Manage app.

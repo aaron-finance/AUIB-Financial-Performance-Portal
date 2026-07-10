@@ -14,7 +14,7 @@ import streamlit as st
 # ============================================================
 
 st.set_page_config(
-    page_title="AUIB Financial Performance Portal",
+    page_title="AUIB Financial Performance Portal v2.0",
     page_icon="📊",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -25,6 +25,7 @@ GREY = "#8C9091"
 NAVY = "#17365D"
 LIGHT_GREY = "#F1F3F5"
 BG = "#FAFAFB"
+APP_VERSION = "2.0.0"
 
 
 # ============================================================
@@ -269,6 +270,18 @@ st.markdown(
         padding-bottom: 5px;
         margin: 10px 0 12px 0;
     }}
+
+    div[data-baseweb="slider"] > div > div {{
+        background-color: #C7D0DB !important;
+    }}
+    div[data-baseweb="slider"] > div > div > div {{
+        background-color: {NAVY} !important;
+    }}
+    div[data-baseweb="slider"] [role="slider"] {{
+        background-color: {NAVY} !important;
+        border-color: {NAVY} !important;
+        box-shadow: none !important;
+    }}
     .model-note {{
         background: #FFF8E8;
         border-left: 4px solid #D99A00;
@@ -314,11 +327,14 @@ def fresh_scenario() -> dict:
         "created_at": datetime.now(timezone.utc).isoformat(),
         "global": copy.deepcopy(BASELINE["global"]),
         "programmes": copy.deepcopy(BASELINE["programmes"]),
-        "college_tuition_increases": {
-            college: max(
-                programme["tuition_increase"]
-                for programme in BASELINE["programmes"]
-                if programme["college"] == college
+        "college_tuition_pct": {
+            college: round(
+                100 * max(
+                    programme["tuition_increase"]
+                    for programme in BASELINE["programmes"]
+                    if programme["college"] == college
+                ),
+                1,
             )
             for college in BASELINE["colleges"]
         },
@@ -336,7 +352,10 @@ def fresh_scenario() -> dict:
 def calculate_scenario(scenario: dict):
     programmes = pd.DataFrame(scenario["programmes"]).copy()
     programmes["tuition_increase"] = programmes["college"].map(
-        scenario["college_tuition_increases"]
+        {
+            college: value / 100
+            for college, value in scenario["college_tuition_pct"].items()
+        }
     )
     programmes["fy27_tuition"] = (
         programmes["fy26_tuition"] * (1 + programmes["tuition_increase"])
@@ -707,25 +726,70 @@ with st.sidebar.expander(
         )
     )
 
+st.sidebar.markdown("### Scenario presets")
+
+preset_cols = st.sidebar.columns(2)
+
+def apply_preset(name: str) -> None:
+    preset = fresh_scenario()
+    preset["name"] = name
+
+    if name == "Conservative":
+        for college in preset["college_tuition_pct"]:
+            preset["college_tuition_pct"][college] = 5.0
+        for programme in preset["programmes"]:
+            programme["fy27_new_intake"] = max(
+                0, round(programme["fy27_new_intake"] * 0.90)
+            )
+
+    elif name == "Growth":
+        for college in preset["college_tuition_pct"]:
+            preset["college_tuition_pct"][college] = 15.0
+        for programme in preset["programmes"]:
+            programme["fy27_new_intake"] = round(
+                programme["fy27_new_intake"] * 1.25
+            )
+
+    elif name == "Extreme":
+        for college in preset["college_tuition_pct"]:
+            preset["college_tuition_pct"][college] = 50.0
+        for programme in preset["programmes"]:
+            programme["fy27_new_intake"] = min(
+                3000, round(programme["fy27_new_intake"] * 1.75)
+            )
+
+    st.session_state.scenario = preset
+    st.rerun()
+
+if preset_cols[0].button("Baseline", use_container_width=True):
+    apply_preset("Workbook baseline")
+
+if preset_cols[1].button("Conservative", use_container_width=True):
+    apply_preset("Conservative")
+
+preset_cols_2 = st.sidebar.columns(2)
+
+if preset_cols_2[0].button("Growth", use_container_width=True):
+    apply_preset("Growth")
+
+if preset_cols_2[1].button("Extreme", use_container_width=True):
+    apply_preset("Extreme")
+
 st.sidebar.markdown("### College tuition assumptions")
 
-for college in scenario["college_tuition_increases"]:
-    scenario["college_tuition_increases"][college] = (
-        st.sidebar.slider(
-            college,
-            min_value=-0.20,
-            max_value=1.00,
-            value=float(
-                scenario["college_tuition_increases"][college]
-            ),
-            step=0.01,
-            format="%.0f%%",
-            key=f"college_tuition_{college}",
-            help=(
-                "Applies to all programmes within this College. "
-                "Range supports downside testing and extreme increases."
-            ),
-        )
+for college in scenario["college_tuition_pct"]:
+    scenario["college_tuition_pct"][college] = st.sidebar.slider(
+        college,
+        min_value=-20.0,
+        max_value=100.0,
+        value=float(scenario["college_tuition_pct"][college]),
+        step=1.0,
+        format="%.0f%%",
+        key=f"college_tuition_{college}",
+        help=(
+            "Stress-test from a 20% reduction to a 100% increase. "
+            "The assumption applies to every programme in the College."
+        ),
     )
 
 st.sidebar.markdown("### Programme intake assumptions")
@@ -811,7 +875,7 @@ st.markdown(
         <h1>AUIB Financial Performance Portal</h1>
         <p>
             Monthly Performance Pack · College Financial
-            Performance Model · Tuition and Scenario Planning
+            Performance Model · Tuition and Scenario Planning · Version 2.0.0
         </p>
     </div>
     """,
@@ -1524,4 +1588,11 @@ st.sidebar.download_button(
     file_name="AUIB_scenario_results.csv",
     mime="text/csv",
     use_container_width=True,
+)
+
+
+st.markdown("---")
+st.caption(
+    f"AUIB Financial Performance Portal · Version {APP_VERSION} · "
+    "Standalone management-planning model"
 )
