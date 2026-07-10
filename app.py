@@ -25,7 +25,7 @@ GREY = "#8C9091"
 NAVY = "#17365D"
 LIGHT_GREY = "#F1F3F5"
 BG = "#FAFAFB"
-APP_VERSION = "2.0.0"
+APP_VERSION = "2.0.1"
 
 
 # ============================================================
@@ -271,16 +271,27 @@ st.markdown(
         margin: 10px 0 12px 0;
     }}
 
-    div[data-baseweb="slider"] > div > div {{
-        background-color: #C7D0DB !important;
+    :root,
+    html,
+    body,
+    [data-testid="stAppViewContainer"],
+    [data-testid="stSidebar"] {{
+        --primary-color: {NAVY} !important;
     }}
-    div[data-baseweb="slider"] > div > div > div {{
-        background-color: {NAVY} !important;
-    }}
-    div[data-baseweb="slider"] [role="slider"] {{
+    [data-testid="stSlider"] [role="slider"] {{
         background-color: {NAVY} !important;
         border-color: {NAVY} !important;
-        box-shadow: none !important;
+        box-shadow: 0 0 0 1px {NAVY} !important;
+    }}
+    [data-testid="stSlider"] div[data-baseweb="slider"] > div > div {{
+        background-color: #C7D0DB !important;
+    }}
+    [data-testid="stSlider"] div[data-baseweb="slider"] > div > div > div {{
+        background-color: {NAVY} !important;
+    }}
+    [data-testid="stSlider"] svg {{
+        color: {NAVY} !important;
+        fill: {NAVY} !important;
     }}
     .model-note {{
         background: #FFF8E8;
@@ -626,6 +637,28 @@ scenario = st.session_state.scenario
 
 
 # ============================================================
+# WIDGET-STATE HELPERS
+# ============================================================
+
+def clear_scenario_widget_state() -> None:
+    """Clear keyed widgets so a preset can safely replace their values."""
+    prefixes = (
+        "college_tuition_",
+        "intake_",
+        "allocation_",
+        "scholarship_",
+    )
+    for key in list(st.session_state.keys()):
+        if any(str(key).startswith(prefix) for prefix in prefixes):
+            del st.session_state[key]
+
+
+def reset_to_baseline() -> None:
+    clear_scenario_widget_state()
+    st.session_state.scenario = fresh_scenario()
+
+
+# ============================================================
 # SIDEBAR CONTROLS
 # ============================================================
 
@@ -635,12 +668,11 @@ st.sidebar.caption(
     "Portal users do not need Excel."
 )
 
-if st.sidebar.button(
+st.sidebar.button(
     "Reset to workbook baseline",
     use_container_width=True,
-):
-    st.session_state.scenario = fresh_scenario()
-    st.rerun()
+    on_click=reset_to_baseline,
+)
 
 scenario["name"] = st.sidebar.text_input(
     "Scenario name",
@@ -731,6 +763,7 @@ st.sidebar.markdown("### Scenario presets")
 preset_cols = st.sidebar.columns(2)
 
 def apply_preset(name: str) -> None:
+    """Apply a complete preset and reset Streamlit widget state safely."""
     preset = fresh_scenario()
     preset["name"] = name
 
@@ -739,15 +772,17 @@ def apply_preset(name: str) -> None:
             preset["college_tuition_pct"][college] = 5.0
         for programme in preset["programmes"]:
             programme["fy27_new_intake"] = max(
-                0, round(programme["fy27_new_intake"] * 0.90)
+                0,
+                round(programme["fy27_new_intake"] * 0.90),
             )
 
     elif name == "Growth":
         for college in preset["college_tuition_pct"]:
             preset["college_tuition_pct"][college] = 15.0
         for programme in preset["programmes"]:
-            programme["fy27_new_intake"] = round(
-                programme["fy27_new_intake"] * 1.25
+            programme["fy27_new_intake"] = min(
+                3000,
+                round(programme["fy27_new_intake"] * 1.25),
             )
 
     elif name == "Extreme":
@@ -755,25 +790,43 @@ def apply_preset(name: str) -> None:
             preset["college_tuition_pct"][college] = 50.0
         for programme in preset["programmes"]:
             programme["fy27_new_intake"] = min(
-                3000, round(programme["fy27_new_intake"] * 1.75)
+                3000,
+                round(programme["fy27_new_intake"] * 1.75),
             )
 
+    clear_scenario_widget_state()
     st.session_state.scenario = preset
-    st.rerun()
 
-if preset_cols[0].button("Baseline", use_container_width=True):
-    apply_preset("Workbook baseline")
 
-if preset_cols[1].button("Conservative", use_container_width=True):
-    apply_preset("Conservative")
+preset_cols[0].button(
+    "Baseline",
+    use_container_width=True,
+    on_click=apply_preset,
+    args=("Workbook baseline",),
+)
+
+preset_cols[1].button(
+    "Conservative",
+    use_container_width=True,
+    on_click=apply_preset,
+    args=("Conservative",),
+)
 
 preset_cols_2 = st.sidebar.columns(2)
 
-if preset_cols_2[0].button("Growth", use_container_width=True):
-    apply_preset("Growth")
+preset_cols_2[0].button(
+    "Growth",
+    use_container_width=True,
+    on_click=apply_preset,
+    args=("Growth",),
+)
 
-if preset_cols_2[1].button("Extreme", use_container_width=True):
-    apply_preset("Extreme")
+preset_cols_2[1].button(
+    "Extreme",
+    use_container_width=True,
+    on_click=apply_preset,
+    args=("Extreme",),
+)
 
 st.sidebar.markdown("### College tuition assumptions")
 
@@ -875,7 +928,7 @@ st.markdown(
         <h1>AUIB Financial Performance Portal</h1>
         <p>
             Monthly Performance Pack · College Financial
-            Performance Model · Tuition and Scenario Planning · Version 2.0.0
+            Performance Model · Tuition and Scenario Planning · Version 2.0.1
         </p>
     </div>
     """,
