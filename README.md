@@ -1,11 +1,9 @@
-# AUIB Financial Performance Portal — Version 2.1.0 Stable
+# AUIB Financial Performance Portal — Version 3.1.0
 
-This release prioritises stability.
+Full stability and visual-consistency release.
 
-- College tuition sliders: -20% to +100%.
-- New intake: 0 to 3,000.
-- Navy theme set through Streamlit configuration.
-- Scenario preset buttons temporarily removed because they caused the deployed app to crash.
-- Reset button retained and validated.
-
-Replace the existing app.py in GitHub.
+- Every slider uses AUIB navy, including University assumptions, tuition, allocations and scholarships.
+- One tuition slider per College, range -20% to +100%.
+- New intake range 0 to 3,000.
+- All navigation, College selections, extreme scenarios, resets and calculations regression-tested.
+- Deprecated Streamlit width arguments removed.

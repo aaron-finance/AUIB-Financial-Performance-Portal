@@ -1,0 +1,747 @@
+{
+  "total": 185,
+  "passed": 185,
+  "failed": 0,
+  "results": [
+    {
+      "test": "Initial load",
+      "status": "PASS"
+    },
+    {
+      "test": "Navigate Controls",
+      "status": "PASS"
+    },
+    {
+      "test": "Shared Services growth [0] minimum",
+      "status": "PASS"
+    },
+    {
+      "test": "Shared Services growth [0] maximum",
+      "status": "PASS"
+    },
+    {
+      "test": "Shared Services growth [0] restore",
+      "status": "PASS"
+    },
+    {
+      "test": "Variable portion of College expenses [1] minimum",
+      "status": "PASS"
+    },
+    {
+      "test": "Variable portion of College expenses [1] maximum",
+      "status": "PASS"
+    },
+    {
+      "test": "Variable portion of College expenses [1] restore",
+      "status": "PASS"
+    },
+    {
+      "test": "General expense inflation [2] minimum",
+      "status": "PASS"
+    },
+    {
+      "test": "General expense inflation [2] maximum",
+      "status": "PASS"
+    },
+    {
+      "test": "General expense inflation [2] restore",
+      "status": "PASS"
+    },
+    {
+      "test": "ELA revenue growth [3] minimum",
+      "status": "PASS"
+    },
+    {
+      "test": "ELA revenue growth [3] maximum",
+      "status": "PASS"
+    },
+    {
+      "test": "ELA revenue growth [3] restore",
+      "status": "PASS"
+    },
+    {
+      "test": "CEID revenue growth [4] minimum",
+      "status": "PASS"
+    },
+    {
+      "test": "CEID revenue growth [4] maximum",
+      "status": "PASS"
+    },
+    {
+      "test": "CEID revenue growth [4] restore",
+      "status": "PASS"
+    },
+    {
+      "test": "Arts & Sciences [5] minimum",
+      "status": "PASS"
+    },
+    {
+      "test": "Arts & Sciences [5] maximum",
+      "status": "PASS"
+    },
+    {
+      "test": "Arts & Sciences [5] restore",
+      "status": "PASS"
+    },
+    {
+      "test": "Business [6] minimum",
+      "status": "PASS"
+    },
+    {
+      "test": "Business [6] maximum",
+      "status": "PASS"
+    },
+    {
+      "test": "Business [6] restore",
+      "status": "PASS"
+    },
+    {
+      "test": "Dentistry [7] minimum",
+      "status": "PASS"
+    },
+    {
+      "test": "Dentistry [7] maximum",
+      "status": "PASS"
+    },
+    {
+      "test": "Dentistry [7] restore",
+      "status": "PASS"
+    },
+    {
+      "test": "Education & Human Development [8] minimum",
+      "status": "PASS"
+    },
+    {
+      "test": "Education & Human Development [8] maximum",
+      "status": "PASS"
+    },
+    {
+      "test": "Education & Human Development [8] restore",
+      "status": "PASS"
+    },
+    {
+      "test": "Engineering [9] minimum",
+      "status": "PASS"
+    },
+    {
+      "test": "Engineering [9] maximum",
+      "status": "PASS"
+    },
+    {
+      "test": "Engineering [9] restore",
+      "status": "PASS"
+    },
+    {
+      "test": "Health Care Technologies [10] minimum",
+      "status": "PASS"
+    },
+    {
+      "test": "Health Care Technologies [10] maximum",
+      "status": "PASS"
+    },
+    {
+      "test": "Health Care Technologies [10] restore",
+      "status": "PASS"
+    },
+    {
+      "test": "International Studies [11] minimum",
+      "status": "PASS"
+    },
+    {
+      "test": "International Studies [11] maximum",
+      "status": "PASS"
+    },
+    {
+      "test": "International Studies [11] restore",
+      "status": "PASS"
+    },
+    {
+      "test": "Law [12] minimum",
+      "status": "PASS"
+    },
+    {
+      "test": "Law [12] maximum",
+      "status": "PASS"
+    },
+    {
+      "test": "Law [12] restore",
+      "status": "PASS"
+    },
+    {
+      "test": "Pharmacy [13] minimum",
+      "status": "PASS"
+    },
+    {
+      "test": "Pharmacy [13] maximum",
+      "status": "PASS"
+    },
+    {
+      "test": "Pharmacy [13] restore",
+      "status": "PASS"
+    },
+    {
+      "test": "Arts & Sciences teaching allocation [14] minimum",
+      "status": "PASS"
+    },
+    {
+      "test": "Arts & Sciences teaching allocation [14] maximum",
+      "status": "PASS"
+    },
+    {
+      "test": "Arts & Sciences teaching allocation [14] restore",
+      "status": "PASS"
+    },
+    {
+      "test": "Arts & Sciences teaching allocation [15] minimum",
+      "status": "PASS"
+    },
+    {
+      "test": "Arts & Sciences teaching allocation [15] maximum",
+      "status": "PASS"
+    },
+    {
+      "test": "Arts & Sciences teaching allocation [15] restore",
+      "status": "PASS"
+    },
+    {
+      "test": "Arts & Sciences teaching allocation [16] minimum",
+      "status": "PASS"
+    },
+    {
+      "test": "Arts & Sciences teaching allocation [16] maximum",
+      "status": "PASS"
+    },
+    {
+      "test": "Arts & Sciences teaching allocation [16] restore",
+      "status": "PASS"
+    },
+    {
+      "test": "Arts & Sciences teaching allocation [17] minimum",
+      "status": "PASS"
+    },
+    {
+      "test": "Arts & Sciences teaching allocation [17] maximum",
+      "status": "PASS"
+    },
+    {
+      "test": "Arts & Sciences teaching allocation [17] restore",
+      "status": "PASS"
+    },
+    {
+      "test": "Arts & Sciences teaching allocation [18] minimum",
+      "status": "PASS"
+    },
+    {
+      "test": "Arts & Sciences teaching allocation [18] maximum",
+      "status": "PASS"
+    },
+    {
+      "test": "Arts & Sciences teaching allocation [18] restore",
+      "status": "PASS"
+    },
+    {
+      "test": "Arts & Sciences teaching allocation [19] minimum",
+      "status": "PASS"
+    },
+    {
+      "test": "Arts & Sciences teaching allocation [19] maximum",
+      "status": "PASS"
+    },
+    {
+      "test": "Arts & Sciences teaching allocation [19] restore",
+      "status": "PASS"
+    },
+    {
+      "test": "Arts & Sciences teaching allocation [20] minimum",
+      "status": "PASS"
+    },
+    {
+      "test": "Arts & Sciences teaching allocation [20] maximum",
+      "status": "PASS"
+    },
+    {
+      "test": "Arts & Sciences teaching allocation [20] restore",
+      "status": "PASS"
+    },
+    {
+      "test": "Arts & Sciences teaching allocation [21] minimum",
+      "status": "PASS"
+    },
+    {
+      "test": "Arts & Sciences teaching allocation [21] maximum",
+      "status": "PASS"
+    },
+    {
+      "test": "Arts & Sciences teaching allocation [21] restore",
+      "status": "PASS"
+    },
+    {
+      "test": "Arts & Sciences [22] minimum",
+      "status": "PASS"
+    },
+    {
+      "test": "Arts & Sciences [22] maximum",
+      "status": "PASS"
+    },
+    {
+      "test": "Arts & Sciences [22] restore",
+      "status": "PASS"
+    },
+    {
+      "test": "Business [23] minimum",
+      "status": "PASS"
+    },
+    {
+      "test": "Business [23] maximum",
+      "status": "PASS"
+    },
+    {
+      "test": "Business [23] restore",
+      "status": "PASS"
+    },
+    {
+      "test": "Dentistry [24] minimum",
+      "status": "PASS"
+    },
+    {
+      "test": "Dentistry [24] maximum",
+      "status": "PASS"
+    },
+    {
+      "test": "Dentistry [24] restore",
+      "status": "PASS"
+    },
+    {
+      "test": "Education & Human Development [25] minimum",
+      "status": "PASS"
+    },
+    {
+      "test": "Education & Human Development [25] maximum",
+      "status": "PASS"
+    },
+    {
+      "test": "Education & Human Development [25] restore",
+      "status": "PASS"
+    },
+    {
+      "test": "Engineering [26] minimum",
+      "status": "PASS"
+    },
+    {
+      "test": "Engineering [26] maximum",
+      "status": "PASS"
+    },
+    {
+      "test": "Engineering [26] restore",
+      "status": "PASS"
+    },
+    {
+      "test": "Health Care Technologies [27] minimum",
+      "status": "PASS"
+    },
+    {
+      "test": "Health Care Technologies [27] maximum",
+      "status": "PASS"
+    },
+    {
+      "test": "Health Care Technologies [27] restore",
+      "status": "PASS"
+    },
+    {
+      "test": "International Studies [28] minimum",
+      "status": "PASS"
+    },
+    {
+      "test": "International Studies [28] maximum",
+      "status": "PASS"
+    },
+    {
+      "test": "International Studies [28] restore",
+      "status": "PASS"
+    },
+    {
+      "test": "Law [29] minimum",
+      "status": "PASS"
+    },
+    {
+      "test": "Law [29] maximum",
+      "status": "PASS"
+    },
+    {
+      "test": "Law [29] restore",
+      "status": "PASS"
+    },
+    {
+      "test": "Pharmacy [30] minimum",
+      "status": "PASS"
+    },
+    {
+      "test": "Pharmacy [30] maximum",
+      "status": "PASS"
+    },
+    {
+      "test": "Pharmacy [30] restore",
+      "status": "PASS"
+    },
+    {
+      "test": "New intake [0] zero",
+      "status": "PASS"
+    },
+    {
+      "test": "New intake [0] 3000",
+      "status": "PASS"
+    },
+    {
+      "test": "New intake [0] restore",
+      "status": "PASS"
+    },
+    {
+      "test": "New intake [1] zero",
+      "status": "PASS"
+    },
+    {
+      "test": "New intake [1] 3000",
+      "status": "PASS"
+    },
+    {
+      "test": "New intake [1] restore",
+      "status": "PASS"
+    },
+    {
+      "test": "New intake [2] zero",
+      "status": "PASS"
+    },
+    {
+      "test": "New intake [2] 3000",
+      "status": "PASS"
+    },
+    {
+      "test": "New intake [2] restore",
+      "status": "PASS"
+    },
+    {
+      "test": "New intake [3] zero",
+      "status": "PASS"
+    },
+    {
+      "test": "New intake [3] 3000",
+      "status": "PASS"
+    },
+    {
+      "test": "New intake [3] restore",
+      "status": "PASS"
+    },
+    {
+      "test": "New intake [4] zero",
+      "status": "PASS"
+    },
+    {
+      "test": "New intake [4] 3000",
+      "status": "PASS"
+    },
+    {
+      "test": "New intake [4] restore",
+      "status": "PASS"
+    },
+    {
+      "test": "New intake [5] zero",
+      "status": "PASS"
+    },
+    {
+      "test": "New intake [5] 3000",
+      "status": "PASS"
+    },
+    {
+      "test": "New intake [5] restore",
+      "status": "PASS"
+    },
+    {
+      "test": "New intake [6] zero",
+      "status": "PASS"
+    },
+    {
+      "test": "New intake [6] 3000",
+      "status": "PASS"
+    },
+    {
+      "test": "New intake [6] restore",
+      "status": "PASS"
+    },
+    {
+      "test": "New intake [7] zero",
+      "status": "PASS"
+    },
+    {
+      "test": "New intake [7] 3000",
+      "status": "PASS"
+    },
+    {
+      "test": "New intake [7] restore",
+      "status": "PASS"
+    },
+    {
+      "test": "New intake [8] zero",
+      "status": "PASS"
+    },
+    {
+      "test": "New intake [8] 3000",
+      "status": "PASS"
+    },
+    {
+      "test": "New intake [8] restore",
+      "status": "PASS"
+    },
+    {
+      "test": "New intake [9] zero",
+      "status": "PASS"
+    },
+    {
+      "test": "New intake [9] 3000",
+      "status": "PASS"
+    },
+    {
+      "test": "New intake [9] restore",
+      "status": "PASS"
+    },
+    {
+      "test": "New intake [10] zero",
+      "status": "PASS"
+    },
+    {
+      "test": "New intake [10] 3000",
+      "status": "PASS"
+    },
+    {
+      "test": "New intake [10] restore",
+      "status": "PASS"
+    },
+    {
+      "test": "Combined maximum all inputs",
+      "status": "PASS"
+    },
+    {
+      "test": "Max scenario page Executive Dashboard",
+      "status": "PASS"
+    },
+    {
+      "test": "Max scenario page Tuition Planning",
+      "status": "PASS"
+    },
+    {
+      "test": "Max scenario page College Performance",
+      "status": "PASS"
+    },
+    {
+      "test": "Max scenario page Statements",
+      "status": "PASS"
+    },
+    {
+      "test": "Max scenario page Controls",
+      "status": "PASS"
+    },
+    {
+      "test": "Open college max",
+      "status": "PASS"
+    },
+    {
+      "test": "Max scenario college Arts & Sciences",
+      "status": "PASS"
+    },
+    {
+      "test": "Max scenario college Business",
+      "status": "PASS"
+    },
+    {
+      "test": "Max scenario college Dentistry",
+      "status": "PASS"
+    },
+    {
+      "test": "Max scenario college Education & Human Development",
+      "status": "PASS"
+    },
+    {
+      "test": "Max scenario college Engineering",
+      "status": "PASS"
+    },
+    {
+      "test": "Max scenario college Health Care Technologies",
+      "status": "PASS"
+    },
+    {
+      "test": "Max scenario college International Studies",
+      "status": "PASS"
+    },
+    {
+      "test": "Max scenario college Law",
+      "status": "PASS"
+    },
+    {
+      "test": "Max scenario college Pharmacy",
+      "status": "PASS"
+    },
+    {
+      "test": "Reset button",
+      "status": "PASS"
+    },
+    {
+      "test": "Reset values verified",
+      "status": "PASS"
+    },
+    {
+      "test": "Controls after reset",
+      "status": "PASS"
+    },
+    {
+      "test": "Combined minimum all inputs",
+      "status": "PASS"
+    },
+    {
+      "test": "Min scenario page Executive Dashboard",
+      "status": "PASS"
+    },
+    {
+      "test": "Min scenario page Tuition Planning",
+      "status": "PASS"
+    },
+    {
+      "test": "Min scenario page College Performance",
+      "status": "PASS"
+    },
+    {
+      "test": "Min scenario page Statements",
+      "status": "PASS"
+    },
+    {
+      "test": "Min scenario page Controls",
+      "status": "PASS"
+    },
+    {
+      "test": "Min scenario college Arts & Sciences",
+      "status": "PASS"
+    },
+    {
+      "test": "Min scenario college Business",
+      "status": "PASS"
+    },
+    {
+      "test": "Min scenario college Dentistry",
+      "status": "PASS"
+    },
+    {
+      "test": "Min scenario college Education & Human Development",
+      "status": "PASS"
+    },
+    {
+      "test": "Min scenario college Engineering",
+      "status": "PASS"
+    },
+    {
+      "test": "Min scenario college Health Care Technologies",
+      "status": "PASS"
+    },
+    {
+      "test": "Min scenario college International Studies",
+      "status": "PASS"
+    },
+    {
+      "test": "Min scenario college Law",
+      "status": "PASS"
+    },
+    {
+      "test": "Min scenario college Pharmacy",
+      "status": "PASS"
+    },
+    {
+      "test": "Repeated tuition -20.0",
+      "status": "PASS"
+    },
+    {
+      "test": "Repeated tuition 100.0",
+      "status": "PASS"
+    },
+    {
+      "test": "Repeated tuition 0.0",
+      "status": "PASS"
+    },
+    {
+      "test": "Repeated tuition 50.0",
+      "status": "PASS"
+    },
+    {
+      "test": "Repeated tuition 15.0",
+      "status": "PASS"
+    },
+    {
+      "test": "Repeated college Arts & Sciences",
+      "status": "PASS"
+    },
+    {
+      "test": "Repeated college Business",
+      "status": "PASS"
+    },
+    {
+      "test": "Repeated college Dentistry",
+      "status": "PASS"
+    },
+    {
+      "test": "Repeated college Education & Human Development",
+      "status": "PASS"
+    },
+    {
+      "test": "Repeated college Engineering",
+      "status": "PASS"
+    },
+    {
+      "test": "Repeated college Health Care Technologies",
+      "status": "PASS"
+    },
+    {
+      "test": "Repeated college International Studies",
+      "status": "PASS"
+    },
+    {
+      "test": "Repeated college Law",
+      "status": "PASS"
+    },
+    {
+      "test": "Repeated college Pharmacy",
+      "status": "PASS"
+    },
+    {
+      "test": "Repeated college Arts & Sciences",
+      "status": "PASS"
+    },
+    {
+      "test": "Repeated college Business",
+      "status": "PASS"
+    },
+    {
+      "test": "Repeated college Dentistry",
+      "status": "PASS"
+    },
+    {
+      "test": "Repeated college Education & Human Development",
+      "status": "PASS"
+    },
+    {
+      "test": "Repeated college Engineering",
+      "status": "PASS"
+    },
+    {
+      "test": "Repeated college Health Care Technologies",
+      "status": "PASS"
+    },
+    {
+      "test": "Repeated college International Studies",
+      "status": "PASS"
+    },
+    {
+      "test": "Repeated college Law",
+      "status": "PASS"
+    },
+    {
+      "test": "Repeated college Pharmacy",
+      "status": "PASS"
+    }
+  ]
+}
