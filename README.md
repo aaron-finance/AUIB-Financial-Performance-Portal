@@ -1,10 +1,11 @@
-# AUIB Financial Performance Portal — Version 2.0.1
+# AUIB Financial Performance Portal — Version 2.1.0 Stable
 
-This corrective release fixes:
+This release prioritises stability.
 
-- The crash when selecting Growth, Conservative, Extreme, or Baseline presets.
-- Stale Streamlit widget values after changing scenarios.
-- Slider styling so all slider groups use AUIB navy rather than warning red.
-- A visible Version 2.0.1 marker at the bottom of the application.
+- College tuition sliders: -20% to +100%.
+- New intake: 0 to 3,000.
+- Navy theme set through Streamlit configuration.
+- Scenario preset buttons temporarily removed because they caused the deployed app to crash.
+- Reset button retained and validated.
 
-Replace the existing `app.py` in GitHub, commit the change, and allow Streamlit to redeploy.
+Replace the existing app.py in GitHub.

@@ -13,6 +13,9 @@ import streamlit as st
 # APPLICATION CONFIGURATION
 # ============================================================
 
+# Force a neutral planning colour rather than Streamlit's default red.
+st._config.set_option("theme.primaryColor", "#17365D")
+
 st.set_page_config(
     page_title="AUIB Financial Performance Portal v2.0",
     page_icon="📊",
@@ -25,7 +28,7 @@ GREY = "#8C9091"
 NAVY = "#17365D"
 LIGHT_GREY = "#F1F3F5"
 BG = "#FAFAFB"
-APP_VERSION = "2.0.1"
+APP_VERSION = "2.1.0"
 
 
 # ============================================================
@@ -271,28 +274,6 @@ st.markdown(
         margin: 10px 0 12px 0;
     }}
 
-    :root,
-    html,
-    body,
-    [data-testid="stAppViewContainer"],
-    [data-testid="stSidebar"] {{
-        --primary-color: {NAVY} !important;
-    }}
-    [data-testid="stSlider"] [role="slider"] {{
-        background-color: {NAVY} !important;
-        border-color: {NAVY} !important;
-        box-shadow: 0 0 0 1px {NAVY} !important;
-    }}
-    [data-testid="stSlider"] div[data-baseweb="slider"] > div > div {{
-        background-color: #C7D0DB !important;
-    }}
-    [data-testid="stSlider"] div[data-baseweb="slider"] > div > div > div {{
-        background-color: {NAVY} !important;
-    }}
-    [data-testid="stSlider"] svg {{
-        color: {NAVY} !important;
-        fill: {NAVY} !important;
-    }}
     .model-note {{
         background: #FFF8E8;
         border-left: 4px solid #D99A00;
@@ -637,28 +618,6 @@ scenario = st.session_state.scenario
 
 
 # ============================================================
-# WIDGET-STATE HELPERS
-# ============================================================
-
-def clear_scenario_widget_state() -> None:
-    """Clear keyed widgets so a preset can safely replace their values."""
-    prefixes = (
-        "college_tuition_",
-        "intake_",
-        "allocation_",
-        "scholarship_",
-    )
-    for key in list(st.session_state.keys()):
-        if any(str(key).startswith(prefix) for prefix in prefixes):
-            del st.session_state[key]
-
-
-def reset_to_baseline() -> None:
-    clear_scenario_widget_state()
-    st.session_state.scenario = fresh_scenario()
-
-
-# ============================================================
 # SIDEBAR CONTROLS
 # ============================================================
 
@@ -668,11 +627,13 @@ st.sidebar.caption(
     "Portal users do not need Excel."
 )
 
-st.sidebar.button(
+if st.sidebar.button(
     "Reset to workbook baseline",
     use_container_width=True,
-    on_click=reset_to_baseline,
-)
+):
+    st.session_state.clear()
+    st.session_state.scenario = fresh_scenario()
+    st.rerun()
 
 scenario["name"] = st.sidebar.text_input(
     "Scenario name",
@@ -758,75 +719,7 @@ with st.sidebar.expander(
         )
     )
 
-st.sidebar.markdown("### Scenario presets")
-
-preset_cols = st.sidebar.columns(2)
-
-def apply_preset(name: str) -> None:
-    """Apply a complete preset and reset Streamlit widget state safely."""
-    preset = fresh_scenario()
-    preset["name"] = name
-
-    if name == "Conservative":
-        for college in preset["college_tuition_pct"]:
-            preset["college_tuition_pct"][college] = 5.0
-        for programme in preset["programmes"]:
-            programme["fy27_new_intake"] = max(
-                0,
-                round(programme["fy27_new_intake"] * 0.90),
-            )
-
-    elif name == "Growth":
-        for college in preset["college_tuition_pct"]:
-            preset["college_tuition_pct"][college] = 15.0
-        for programme in preset["programmes"]:
-            programme["fy27_new_intake"] = min(
-                3000,
-                round(programme["fy27_new_intake"] * 1.25),
-            )
-
-    elif name == "Extreme":
-        for college in preset["college_tuition_pct"]:
-            preset["college_tuition_pct"][college] = 50.0
-        for programme in preset["programmes"]:
-            programme["fy27_new_intake"] = min(
-                3000,
-                round(programme["fy27_new_intake"] * 1.75),
-            )
-
-    clear_scenario_widget_state()
-    st.session_state.scenario = preset
-
-
-preset_cols[0].button(
-    "Baseline",
-    use_container_width=True,
-    on_click=apply_preset,
-    args=("Workbook baseline",),
-)
-
-preset_cols[1].button(
-    "Conservative",
-    use_container_width=True,
-    on_click=apply_preset,
-    args=("Conservative",),
-)
-
-preset_cols_2 = st.sidebar.columns(2)
-
-preset_cols_2[0].button(
-    "Growth",
-    use_container_width=True,
-    on_click=apply_preset,
-    args=("Growth",),
-)
-
-preset_cols_2[1].button(
-    "Extreme",
-    use_container_width=True,
-    on_click=apply_preset,
-    args=("Extreme",),
-)
+st.sidebar.caption("Version 2.1 stable build: scenario presets temporarily removed while the core controls are fully validated.")
 
 st.sidebar.markdown("### College tuition assumptions")
 
@@ -928,7 +821,7 @@ st.markdown(
         <h1>AUIB Financial Performance Portal</h1>
         <p>
             Monthly Performance Pack · College Financial
-            Performance Model · Tuition and Scenario Planning · Version 2.0.1
+            Performance Model · Tuition and Scenario Planning · Version 2.1.0
         </p>
     </div>
     """,
